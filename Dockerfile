@@ -79,7 +79,7 @@ RUN set -ex; \
 # https://docs.oracle.com/javase/10/tools/jshell.htm
 # https://en.wikipedia.org/wiki/JShell
 
-RUN apt-get purge 'libidn*'
+RUN apt-get purge -y 'libidn*'
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
 		libidn2-0 \
