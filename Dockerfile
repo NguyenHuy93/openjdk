@@ -44,12 +44,6 @@ ENV JAVA_HOME /docker-java-home
 ENV JAVA_VERSION 11.0.3
 ENV JAVA_DEBIAN_VERSION 11.0.3+1-1~bpo9+1
 
-RUN apt-get remove --auto-remove libidn11
-
-RUN apt-get update && apt-get install -y --no-install-recommends \
-		libidn2-0 \
-	&& rm -rf /var/lib/apt/lists/*
-
 RUN set -ex; \
 	\
 # deal with slim variants not having man page directories (which causes "update-alternatives" to fail)
@@ -84,6 +78,12 @@ RUN set -ex; \
 
 # https://docs.oracle.com/javase/10/tools/jshell.htm
 # https://en.wikipedia.org/wiki/JShell
+
+RUN apt-get remove --auto-remove 'libidn*'
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
+		libidn2-0 \
+	&& rm -rf /var/lib/apt/lists/*
 CMD ["jshell"]
 
 # If you're reading this and have any feedback on how this image could be
