@@ -4,7 +4,7 @@
 # PLEASE DO NOT EDIT IT DIRECTLY.
 #
 
-FROM debian:stable-slim
+FROM debian:stretch-slim
 
 # A few reasons for installing distribution-provided OpenJDK:
 #
@@ -21,6 +21,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 		unzip \
 		xz-utils \
 	&& rm -rf /var/lib/apt/lists/*
+RUN apt-get remove --auto-remove libidn11
+
+RUN apt-get update \ apt-get install libidn2-0
 
 RUN echo 'deb http://deb.debian.org/debian stretch-backports main' > /etc/apt/sources.list.d/stretch-backports.list
 
