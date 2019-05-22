@@ -16,7 +16,7 @@ FROM debian:stretch-slim
 #     For some sample build times, see Debian's buildd logs:
 #       https://buildd.debian.org/status/logs.php?pkg=openjdk-11
 
-RUN apt-get remove --auto-remove libidn11
+RUN apt-get remove --auto-remove libidn1.33-1
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
 		bzip2 \
