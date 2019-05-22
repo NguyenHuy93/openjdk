@@ -20,7 +20,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 		bzip2 \
 		unzip \
 		xz-utils \
-		libidn2-0 \
 	&& rm -rf /var/lib/apt/lists/*
 
 RUN echo 'deb http://deb.debian.org/debian stretch-backports main' > /etc/apt/sources.list.d/stretch-backports.list
@@ -45,7 +44,7 @@ ENV JAVA_HOME /docker-java-home
 ENV JAVA_VERSION 11.0.3
 ENV JAVA_DEBIAN_VERSION 11.0.3+1-1~bpo9+1
 
-RUN apt-get purge libidn11
+RUN apt-get remove --auto-remove libidn11
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
 		libidn2-0 \
