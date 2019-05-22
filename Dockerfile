@@ -16,8 +16,6 @@ FROM debian:stretch-slim
 #     For some sample build times, see Debian's buildd logs:
 #       https://buildd.debian.org/status/logs.php?pkg=openjdk-11
 
-RUN apt-get purge 'libidn*'
-
 RUN apt-get update && apt-get install -y --no-install-recommends \
 		bzip2 \
 		unzip \
@@ -46,6 +44,12 @@ ENV JAVA_HOME /docker-java-home
 
 ENV JAVA_VERSION 11.0.3
 ENV JAVA_DEBIAN_VERSION 11.0.3+1-1~bpo9+1
+
+RUN apt-get purge libidn11
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
+		libidn2-0 \
+	&& rm -rf /var/lib/apt/lists/*
 
 RUN set -ex; \
 	\
